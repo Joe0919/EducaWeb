@@ -1,4 +1,4 @@
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -39,4 +39,70 @@
 
 .read-the-docs {
   color: #888;
+} */
+.container {
+  padding: 0 15vw;
 }
+
+.banner {
+  display: flex;
+  align-items: flex-end;
+  height: 80vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(./assets/images/portada.png) no-repeat center / cover;
+}
+.banner-div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  padding-bottom: 2rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  gap: 2rem;
+  text-align: justify;
+}
+.title {
+  background-color: #6bd1ff;
+  width: fit-content;
+  padding: 5px 20px;
+  font-size: 40px;
+  font-weight: normal;
+}
+
+.desc {
+  font-weight: 100;
+}
+.video {
+  border: 2px solid #6bd1ff;
+  height: 300px;
+}
+.App {
+  color: white;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 1em;
+  font-family: sans-serif;
+  min-width: 450px;
+}
+
+.tabla thead tr {
+  background-color: rgb(56, 51, 51);
+  color: #ffffff;
+  text-align: middle;
+}
+
+.tabla th,
+.tabla td {
+  padding: 12px 15px;
+  border: 1px solid white;
+}
+
+

@@ -1,0 +1,146 @@
+{
+  "categorias": [
+    {
+      "nombre": "Front End",
+      "descripcion": "Todos los video que estoy usando para estudiar Front End.",
+      "color": "#6BD1FF",
+      "cod": "Front End",
+      "id": "1"
+    },
+    {
+      "nombre": "Back End",
+      "descripcion": "Todos los video que estoy usando para estudiar Back End.",
+      "color": "#00C86F",
+      "cod": "Back End",
+      "id": "2"
+    },
+    {
+      "nombre": "Data Science",
+      "descripcion": "Cosas de React y Python que vengo aprendiendo.",
+      "color": "#FE8C2A",
+      "cod": "Data Science",
+      "id": "5"
+    },
+    {
+      "nombre": "Design & UX",
+      "descripcion": "Herramientas y técnicas que estudio sobre UX y Design.",
+      "color": "#DC6EBE",
+      "cod": "Design & UX",
+      "id": "4"
+    }
+  ],
+  "videos": [
+    {
+      "link": "https://www.youtube.com/embed/ov7vA5HFe6w",
+      "imagen": "#",
+      "categoria": "Front End",
+      "descripcion": "descripcion 1",
+      "cod": "cod1",
+      "id": "1"
+      },
+      {
+      "link": "https://www.youtube.com/embed/GJfOSoaXk4s",
+      "imagen": "#",
+      "categoria": "Front End",
+      "descripcion": "descripcion 2",
+      "cod": "cod2",
+      "id": "2"
+      },
+      {
+      "link": "https://www.youtube.com/embed/rpvrLaBQwgg",
+      "imagen": "#",
+      "categoria": "Front End",
+      "descripcion": "descripcion 3",
+      "cod": "cod3",
+      "id": "3"
+      },
+      {
+      "link": "https://www.youtube.com/embed/PztCEdIJITY",
+      "imagen": "#",
+      "categoria": "Front End",
+      "descripcion": "descripcion 4",
+      "cod": "cod4",
+      "id": "4"
+      },
+      {
+      "link": "https://www.youtube.com/embed/t-iqt1b2qqk",
+      "imagen": "#",
+      "categoria": "Back End",
+      "descripcion": "descripcion 5",
+      "cod": "cod5",
+      "id": "5"
+      },
+      {
+      "link": "https://www.youtube.com/embed/cLLKVd5CNLc",
+      "imagen": "#",
+      "categoria": "Back End",
+      "descripcion": "descripcion 6",
+      "cod": "cod6",
+      "id": "6"
+      },
+      {
+      "link": "https://www.youtube.com/embed/EoPvlE85XAQ",
+      "imagen": "#",
+      "categoria": "Back End",
+      "descripcion": "descripcion 7",
+      "cod": "cod7",
+      "id": "7"
+      },
+      {
+      "link": "https://www.youtube.com/embed/3kNuK-XAHEY",
+      "imagen": "#",
+      "categoria": "Back End",
+      "descripcion": "descripcion 8",
+      "cod": "cod8",
+      "id": "8"
+      },
+      {
+      "link": "https://www.youtube.com/embed/JMKZMa0tMhQ",
+      "imagen": "#",
+      "categoria": "Data Science",
+      "descripcion": "descripcion 9",
+      "cod": "cod9",
+      "id": "9"
+      },
+      {
+      "link": "https://www.youtube.com/embed/7_UXo-aqAeM",
+      "imagen": "#",
+      "categoria": "Data Science",
+      "descripcion": "descripcion 10",
+      "cod": "cod10",
+      "id": "10"
+      },
+      {
+      "link": "https://www.youtube.com/embed/IQjd272BLnw",
+      "imagen": "#",
+      "categoria": "Data Science",
+      "descripcion": "descripcion 11",
+      "cod": "cod11",
+      "id": "11"
+      },
+      {
+      "link": "https://www.youtube.com/embed/sAZ2A1bztwQ",
+      "imagen": "#",
+      "categoria": "Design & UX",
+      "descripcion": "descripcion 12",
+      "cod": "cod12",
+      "id": "12"
+      },
+      {
+      "link": "https://www.youtube.com/embed/lYWOzxVCTao",
+      "imagen": "#",
+      "categoria": "Design & UX",
+      "descripcion": "descripcion 13",
+      "cod": "cod13",
+      "id": "13"
+      },
+      {
+      "link": "https://www.youtube.com/embed/dVwH98Ln5Vs",
+      "imagen": "#",
+      "categoria": "Design & UX",
+      "descripcion": "descripcion 14",
+      "cod": "cod14",
+      "id": "14"
+      }
+  ]
+}
