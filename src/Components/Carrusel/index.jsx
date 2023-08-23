@@ -5,16 +5,7 @@ import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Link } from "react-router-dom";
-
-const Carrusel = styled.div`
-  margin: 0;
-  width: 70vw;
-`;
-const Video = styled.iframe`
-  height: 200px;
-  width: 100%;
-  border: 3px solid black;
-`;
+import { IconoPlay } from "../UI";
 
 export default (props) => {
   const { color, datos } = props;
@@ -59,15 +50,26 @@ export default (props) => {
         }}
       >
         {datos.map((dato) => {
-          const { id, link } = dato;
+          const { id, imagen, titulo } = dato;
           return (
             <SwiperSlide key={id}>
-              <Link to={`/video/${id}`} >
-                <Video
-                  src={link}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              <Link to={`/video/${id}`} title={`Ver: ${titulo}`}>
+                <VideoImg
+                  src={imagen}
                   style={{ border: `3px solid ${color}` }}
-                ></Video>
+                ></VideoImg>
+                <IconoPlayCarrusel title="Ver Video">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="35"
+                    height="35"
+                    fill="currentColor"
+                    className="bi bi-play-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+                  </svg>
+                </IconoPlayCarrusel>
               </Link>
             </SwiperSlide>
           );
@@ -76,3 +78,23 @@ export default (props) => {
     </Carrusel>
   );
 };
+
+const Carrusel = styled.div`
+  margin: 0;
+  width: 70vw;
+`;
+const VideoImg = styled.img`
+  height: 200px;
+  width: 100%;
+  border-radius: 8px;
+  transition: all 0.3s;
+  position: relative;
+  &:hover {
+    filter: brightness(80%);
+  }
+`;
+
+const IconoPlayCarrusel = styled(IconoPlay)`
+  height: 50px;
+  width: 70px;
+`;

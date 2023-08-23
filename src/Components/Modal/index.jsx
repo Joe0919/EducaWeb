@@ -10,12 +10,13 @@ export const Modal = ({
   mostrarOverlay,
   posicionModal,
   padding,
+  width,
 }) => {
   return ReactDOM.createPortal(
     <>
       {estado && (
         <Overlay mostrarOverlay={mostrarOverlay} posicionModal={posicionModal}>
-          <ContenedorModal padding={padding}>
+          <ContenedorModal padding={padding} width={width}>
             {mostrarHeader && (
               <EncabezadoModal>
                 <h3>{titulo}</h3>
@@ -58,7 +59,7 @@ const Overlay = styled.div`
 `;
 
 const ContenedorModal = styled.div`
-  width: 500px;
+  width: ${(props) => (props.width ? props.width : "500px")};
   min-height: 100px;
   background: #fff;
   position: relative;
@@ -76,9 +77,10 @@ const EncabezadoModal = styled.div`
   border-bottom: 1px solid #e8e8e8;
 
   h3 {
-    font-weight: 500;
-    font-size: 16px;
-    color: #1766dc;
+    font-weight: 600;
+    font-size: 20px;
+    /* color: #1766dc; */
+    color: black;
   }
 `;
 

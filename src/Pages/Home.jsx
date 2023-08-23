@@ -3,8 +3,9 @@ import "swiper/css";
 import { useEffect, useState } from "react";
 import { buscar } from "../Api/api";
 import Categoria from "../Components/Categoria";
-import { Main } from "../Components/UI";
+import { Container, Main } from "../Components/UI";
 import Banner from "../Components/Banner";
+import { styled } from "styled-components";
 
 export const Home = () => {
   const [videos, setVideos] = useState([]);
@@ -15,36 +16,38 @@ export const Home = () => {
     buscar(`/categorias`, setCategorias);
   }, []);
 
-console.log(categorias)
-
   return (
     <Main>
-      {/* <Banner
-        videos={videos.filter((video) => video.categoria === categorias[0].nombre)}
-        categoria={categorias[0]}
-      /> */}
+      {categorias.length > 0 && videos.length > 0 && (
+          <Banner
+            videos={videos.filter(
+              (video) => video.categoria === categorias[0].nombre
+            )}
+            categorias={categorias[0]}
+          />
+      )}
 
-      {/* <section className="container carrusel">
-        <div className="carrusel">
-          <div className="App">
-            <Carrusel datos={videos} />
-          </div>
-        </div>
-      </section> */}
 
-      <section className="container categorias">
-        <div className="title-categoria">
-          {categorias.map((categoria, index) => (
-            <Categoria
-              key={index}
-              datos={categoria}
-              videos={videos.filter(
-                (video) => video.categoria === categoria.nombre
-              )}
-            />
-          ))}
+      <DivCategorias>
+        <div>
+          {categorias.map(
+            (categoria, index) =>
+              index !== 0 && (
+                <Categoria
+                  key={index}
+                  datos={categoria}
+                  videos={videos.filter(
+                    (video) => video.categoria === categoria.nombre
+                  )}
+                />
+              )
+          )}
         </div>
-      </section>
+      </DivCategorias>
     </Main>
   );
 };
+
+const DivCategorias = styled(Container)`
+  background-color: transparent;
+`

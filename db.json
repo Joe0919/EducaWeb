@@ -4,143 +4,200 @@
       "nombre": "Front End",
       "descripcion": "Todos los video que estoy usando para estudiar Front End.",
       "color": "#6BD1FF",
-      "cod": "Front End",
+      "codigo": "Front End",
       "id": "1"
     },
     {
       "nombre": "Back End",
       "descripcion": "Todos los video que estoy usando para estudiar Back End.",
       "color": "#00C86F",
-      "cod": "Back End",
+      "codigo": "Back End",
       "id": "2"
     },
     {
       "nombre": "Data Science",
       "descripcion": "Cosas de React y Python que vengo aprendiendo.",
       "color": "#FE8C2A",
-      "cod": "Data Science",
+      "codigo": "Data Science",
       "id": "5"
     },
     {
       "nombre": "Design & UX",
       "descripcion": "Herramientas y técnicas que estudio sobre UX y Design.",
       "color": "#DC6EBE",
-      "cod": "Design & UX",
+      "codigo": "Design & UX",
       "id": "4"
+    },
+    {
+      "nombre": "Mobile",
+      "descripcion": "Contenido que vengo estudiando sobre React Native y Flutter",
+      "color": "#9CD33B",
+      "codigo": "Mobile",
+      "id": "5"
+    },
+    {
+      "nombre": "Infraestructura",
+      "descripcion": "Todo lo que estoy aprendiendo sobre Docker y mucho mas",
+      "color": "#6B5BE2",
+      "codigo": "Infraestructura",
+      "id": "6"
+    },
+    {
+      "nombre": "Marketing Digital",
+      "descripcion": "La forma de vender y monetizar mis ideas",
+      "color": "#FFBA05",
+      "codigo": "Marketing Digital",
+      "id": "7"
+    },
+    {
+      "nombre": "Innovación y Gestión",
+      "descripcion": "Como mantener el equipo felíz y mucho mas",
+      "color": "#ff3a3a",
+      "codigo": "Innovación y Gestión",
+      "id": "8"
+    },
+    {
+      "nombre": "Algoritmos",
+      "descripcion": "Todo lo relacionado",
+      "color": "#f52424",
+      "codigo": "Algoritmos",
+      "id": "f92840b3-50c7-4d5e-a6c1-a0e44db70c92"
+    },
+    {
+      "nombre": "Administración de BD",
+      "descripcion": "Videos acerca de como administrar las BD",
+      "color": "#917aff",
+      "codigo": "Administración de BD",
+      "id": "81458e7b-1439-434b-9772-88afb00ebfcd"
     }
+
   ],
   "videos": [
     {
+      "titulo": "¿Que significa ser Programador?",
       "link": "https://www.youtube.com/embed/ov7vA5HFe6w",
-      "imagen": "#",
+      "imagen": "https://i.postimg.cc/FRWdk70y/Front-End1.jpg",
       "categoria": "Front End",
       "descripcion": "descripcion 1",
-      "cod": "cod1",
+      "codigo": "cod1",
       "id": "1"
-      },
-      {
+    },
+    {
+      "titulo": "¿Que es Javascript?",
       "link": "https://www.youtube.com/embed/GJfOSoaXk4s",
-      "imagen": "#",
+      "imagen": "https://i.postimg.cc/mkk9mQTp/Front-End2.jpg",
       "categoria": "Front End",
       "descripcion": "descripcion 2",
-      "cod": "cod2",
+      "codigo": "cod2",
       "id": "2"
-      },
-      {
+    },
+    {
+      "titulo": "Equipo Front End",
       "link": "https://www.youtube.com/embed/rpvrLaBQwgg",
-      "imagen": "#",
+      "imagen": "https://i.postimg.cc/cJGQdgc6/Front-End3.jpg",
       "categoria": "Front End",
       "descripcion": "descripcion 3",
-      "cod": "cod3",
+      "codigo": "cod3",
       "id": "3"
-      },
-      {
+    },
+    {
+      "titulo": "¿Cuando usar Var, let, const?",
       "link": "https://www.youtube.com/embed/PztCEdIJITY",
-      "imagen": "#",
+      "imagen": "https://i.postimg.cc/JzkNwcZ9/Front-End4.jpg",
       "categoria": "Front End",
       "descripcion": "descripcion 4",
-      "cod": "cod4",
+      "codigo": "cod4",
       "id": "4"
-      },
-      {
+    },
+    {
+      "titulo": "Spring Frame Work",
       "link": "https://www.youtube.com/embed/t-iqt1b2qqk",
-      "imagen": "#",
+      "imagen": "https://i.postimg.cc/Hxs8LQ8W/backend1.jpg",
       "categoria": "Back End",
       "descripcion": "descripcion 5",
-      "cod": "cod5",
+      "codigo": "cod5",
       "id": "5"
-      },
-      {
+    },
+    {
+      "titulo": "¿Que es Sql y NoSql?",
       "link": "https://www.youtube.com/embed/cLLKVd5CNLc",
-      "imagen": "#",
+      "imagen": "https://i.postimg.cc/PqM8h6xF/backend2.jpg",
       "categoria": "Back End",
       "descripcion": "descripcion 6",
-      "cod": "cod6",
+      "codigo": "cod6",
       "id": "6"
-      },
-      {
+    },
+    {
+      "titulo": "Conoce los ENUM",
       "link": "https://www.youtube.com/embed/EoPvlE85XAQ",
-      "imagen": "#",
+      "imagen": "https://i.postimg.cc/MpVQ3Z8w/backend3.jpg",
       "categoria": "Back End",
       "descripcion": "descripcion 7",
-      "cod": "cod7",
+      "codigo": "cod7",
       "id": "7"
-      },
-      {
+    },
+    {
+      "titulo": "¿Porque usar Javascript actualmente?",
       "link": "https://www.youtube.com/embed/3kNuK-XAHEY",
-      "imagen": "#",
+      "imagen": "https://i.postimg.cc/yNKSMqVZ/backend4.jpg",
       "categoria": "Back End",
       "descripcion": "descripcion 8",
-      "cod": "cod8",
+      "codigo": "cod8",
       "id": "8"
-      },
-      {
+    },
+    {
+      "titulo": "Python para Ciencia de Datos",
       "link": "https://www.youtube.com/embed/JMKZMa0tMhQ",
-      "imagen": "#",
+      "imagen": "https://i.postimg.cc/qM9KGhSQ/datascience1.jpg",
       "categoria": "Data Science",
       "descripcion": "descripcion 9",
-      "cod": "cod9",
+      "codigo": "cod9",
       "id": "9"
-      },
-      {
+    },
+    {
+      "titulo": "¿Por que estudiar Data Science?",
       "link": "https://www.youtube.com/embed/7_UXo-aqAeM",
-      "imagen": "#",
+      "imagen": "https://i.postimg.cc/cCzn2rHx/datascience2.jpg",
       "categoria": "Data Science",
       "descripcion": "descripcion 10",
-      "cod": "cod10",
+      "codigo": "cod10",
       "id": "10"
-      },
-      {
+    },
+    {
+      "titulo": "Guia para la carrera de Python",
       "link": "https://www.youtube.com/embed/IQjd272BLnw",
-      "imagen": "#",
+      "imagen": "https://i.postimg.cc/HxpX7qRg/datascience3.jpg",
       "categoria": "Data Science",
       "descripcion": "descripcion 11",
-      "cod": "cod11",
+      "codigo": "cod11",
       "id": "11"
-      },
-      {
+    },
+    {
+      "titulo": "",
       "link": "https://www.youtube.com/embed/sAZ2A1bztwQ",
-      "imagen": "#",
+      "imagen": "https://i.postimg.cc/nLt9mygL/diseno1.jpg",
       "categoria": "Design & UX",
       "descripcion": "descripcion 12",
-      "cod": "cod12",
+      "codigo": "cod12",
       "id": "12"
-      },
-      {
+    },
+    {
+      "titulo": "Diseño UI/UX - Preguntas",
       "link": "https://www.youtube.com/embed/lYWOzxVCTao",
-      "imagen": "#",
+      "imagen": "https://i.postimg.cc/LsBY3yF3/diseno2.jpg",
       "categoria": "Design & UX",
       "descripcion": "descripcion 13",
-      "cod": "cod13",
+      "codigo": "cod13",
       "id": "13"
-      },
-      {
+    },
+    {
+      "titulo": "Tipos de Diseñador - Diseñador UI/UX",
       "link": "https://www.youtube.com/embed/dVwH98Ln5Vs",
-      "imagen": "#",
+      "imagen": "https://i.postimg.cc/PxXL3mts/diseno3.jpg",
       "categoria": "Design & UX",
       "descripcion": "descripcion 14",
-      "cod": "cod14",
+      "codigo": "cod14",
       "id": "14"
-      }
+    }
   ]
 }

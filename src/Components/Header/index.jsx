@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Header = styled(Container)`
   display: flex;
   justify-content: space-between;
-
+  z-index: 99;
   height: 12vh;
   align-items: center;
   background-color: black;
