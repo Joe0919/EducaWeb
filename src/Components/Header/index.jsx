@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import logo from "../../assets/images/Logo3.png";
 import { Btn, Container, Logo } from "../UI";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = styled(Container)`
   display: flex;
@@ -15,12 +15,32 @@ const Header = styled(Container)`
 `;
 
 export default () => {
+  const location = useLocation();
+
+  const { pathname } = location;
+
   return (
     <Header>
       <Link to={`/`}>
         <Logo src={logo} alt="Logo EducaWeb" />
       </Link>
-      <Btn>Nuevo Video</Btn>
+      <Link
+        to={
+          pathname == "/"
+            ? `/videos`
+            : pathname === `/videos`
+            ? `/categorias`
+            : `/`
+        }
+      >
+        <Btn>
+          {pathname === "/"
+            ? "Todos los videos"
+            : pathname === "/videos"
+            ? "Ver Categorias"
+            : "Ir a Inicio"}
+        </Btn>
+      </Link>
     </Header>
   );
 };

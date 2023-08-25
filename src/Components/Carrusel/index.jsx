@@ -84,7 +84,7 @@ const Carrusel = styled.div`
   width: 70vw;
 `;
 const VideoImg = styled.img`
-  height: 200px;
+  /* height: 200px; */
   width: 100%;
   border-radius: 8px;
   transition: all 0.3s;

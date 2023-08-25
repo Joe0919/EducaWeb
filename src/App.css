@@ -118,3 +118,8 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
+.carga{
+  color: white;
+  font-weight: 600;
+  font-size: 2rem;
+}

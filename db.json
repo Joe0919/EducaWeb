@@ -69,8 +69,21 @@
       "color": "#917aff",
       "codigo": "Administración de BD",
       "id": "81458e7b-1439-434b-9772-88afb00ebfcd"
+    },
+    {
+      "nombre": "Ingenieria de Software",
+      "descripcion": "Todo lo relacionado",
+      "color": "#8bff3d",
+      "codigo": "Ingenieria de Software",
+      "id": "6c9db78d-fcc5-470a-a5ef-9b420df3260f"
+    },
+    {
+      "nombre": "asdf",
+      "descripcion": "agadgadgadg",
+      "color": "#000",
+      "codigo": "asfas",
+      "id": "37875cda-7297-4bdb-a809-731a100ee2b8"
     }
-
   ],
   "videos": [
     {

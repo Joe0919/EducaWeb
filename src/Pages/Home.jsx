@@ -10,11 +10,16 @@ import { styled } from "styled-components";
 export const Home = () => {
   const [videos, setVideos] = useState([]);
   const [categorias, setCategorias] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    buscar(`/videos`, setVideos);
-    buscar(`/categorias`, setCategorias);
+    buscar(`/videos`, setVideos, setLoading);
+    buscar(`/categorias`, setCategorias, setLoading);
   }, []);
+
+  if (loading) {
+    return <div className="carga">Cargando...</div>;
+  }
 
   return (
     <Main>

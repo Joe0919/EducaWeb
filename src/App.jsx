@@ -6,6 +6,7 @@ import Footer from "./Components/Footer";
 import { Home } from "./Pages/Home";
 import Video from "./Pages/Video";
 import Categorias from "./Pages/Categorias";
+import { Videos } from "./Pages/Videos";
 
 
 
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={ <Home /> } />
         <Route path="/categorias" element={ <Categorias /> } />
+        <Route path="/videos" element={ <Videos /> } />
         <Route path="/video/:id" element={<Video/>}/>
       </Routes>
       <Footer />

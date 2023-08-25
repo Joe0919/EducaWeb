@@ -5,7 +5,7 @@ export default ({ filter, setFilter }) => {
   return (
     <Buscador>
       <CssTextField
-        label="Buscar:"
+        label="Buscar: (Por reparar)"
         id="custom-css-outlined-input"
         InputLabelProps={{
           style: {

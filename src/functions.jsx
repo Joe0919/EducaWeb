@@ -8,3 +8,25 @@ export function mostrarMensaje(mensaje, icono){
         icon: icono
     })
 }
+
+export function confirmar(){
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: '¡No podrás revertir esto!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Aquí puedes realizar la acción que deseas ejecutar cuando el usuario confirma
+          Swal.fire(
+            'Eliminado',
+            'El registro ha sido eliminado',
+            'success'
+          );
+        }
+      });
+}

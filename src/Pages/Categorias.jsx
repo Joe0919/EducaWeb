@@ -14,13 +14,16 @@ import {
 
 import GlobalFilter from "../GlobalFilter";
 import { Button, TextField } from "@mui/material";
-import { buscar, registrar } from "../Api/api";
+import { buscar, eliminar, registrar } from "../Api/api";
 import { mostrarMensaje } from "../functions";
+import Swal from "sweetalert2";
 
 export default () => {
   const [active, setActive] = useState(false);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+
+  const [btnContenido, setBtnContenido] = useState("Guardar");
 
   // const [nombre, setNombre] = useState("");
   // const [descripcion, setDescripcion] = useState("");
@@ -32,18 +35,18 @@ export default () => {
     descripcion: "",
     color: "#000",
     codigo: "",
-    // Agrega aquí más campos de entrada si es necesario
   });
   const manejarCambios = (event) => {
+    const { name, value } = event.target;
     setDatosForm({
       ...datosForm,
-      [event.target.name]: event.target.value,
+      [name]: value,
     });
   };
 
   useEffect(() => {
     buscar("/categorias", setData, setLoading);
-  }, [data]); //Consultar datos de la API
+  }, []); //Consultar datos de la API
 
   // useEffect(() => {
   //   console.log(color)
@@ -66,21 +69,46 @@ export default () => {
       },
       {
         Header: "Editar",
-        Cell: (row) => (
-          <button onClick={() => handleButtonClick(row)}>Editar</button>
-        ),
+        Cell: (row) => {
+          const Editar = () => {
+            setDatosForm(row.row.original);
+            setBtnContenido("Editar");
+            setActive(!active);
+          };
+
+          return <button onClick={Editar}>Editar</button>;
+        },
       },
       {
         Header: "Eliminar",
+        Cell: (row) => {
+          const Eliminar = () => {
+            Swal.fire({
+              title: "¿Estás seguro?",
+              text: "¡No podrás revertir la eliminación!",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Confirmar",
+              cancelButtonText: "Cancelar",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                const id = row.row.original.id;
+                eliminar(`/categorias/${id}`,'/categorias', setData, setLoading);
+                mostrarMensaje("Se eliminó el registro", "success");
+              }
+            });
+          };
+
+          return <button onClick={Eliminar}>Eliminar</button>;
+        },
       },
     ],
-    []
+    [active, setData]
   );
 
-  const handleButtonClick = (row) => {
-    // Lógica para manejar el clic en el botón
-    console.log(row.row.original.id);
-  };
+  // + INICIALIZACION DE LA TABLA
 
   const table = useTable(
     {
@@ -118,7 +146,7 @@ export default () => {
   // + </ CONFIGURANDO LA TABLA >
 
   if (loading) {
-    return <div>Cargando...</div>;
+    return <div className="carga">Cargando...</div>;
   }
 
   const Enviar = (evt) => {
@@ -128,16 +156,36 @@ export default () => {
       ...datosForm,
       id,
     };
-    registrar("/categorias", data, setLoading);
-    setActive(!active)
-    mostrarMensaje("Se registraron los datos", "success")
+    registrar("/categorias", data, setData, setLoading);
+    setActive(!active);
+    mostrarMensaje("Se registraron los datos", "success");
+  };
+  const EditarDatos = (evt) => {
+    evt.preventDefault();
+    const id = datosForm.id;
+    registrar(`/categorias/${id}`, datosForm, setLoading);
+    setActive(!active);
+    mostrarMensaje("Se Editaron los datos", "success");
   };
 
   return (
     data.length > 0 && (
       <MainPadding>
         <Titulo1>NUEVA CATEGORIA</Titulo1>
-        <Btn onClick={() => setActive(!active)}>Nuevo</Btn>
+        <Btn
+          onClick={() => {
+            setActive(!active);
+            setDatosForm({
+              nombre: "",
+              descripcion: "",
+              color: "#000",
+              codigo: "",
+            });
+            setBtnContenido("Guardar");
+          }}
+        >
+          Nuevo
+        </Btn>
         <Modal
           estado={active}
           cambiarEstado={setActive}
@@ -149,7 +197,7 @@ export default () => {
           width={"600px"}
         >
           <Contenido>
-            <form onSubmit={Enviar}>
+            <form onSubmit={btnContenido === "Guardar" ? Enviar : EditarDatos}>
               <TextField
                 id="nombre"
                 name="nombre"
@@ -158,7 +206,7 @@ export default () => {
                 fullWidth
                 margin="normal"
                 required
-                value={datosForm.nombre}
+                value={datosForm?.nombre || ""}
                 onChange={manejarCambios}
               />
               <TextField
@@ -170,7 +218,7 @@ export default () => {
                 margin="normal"
                 rows={3}
                 required
-                value={datosForm.descripcion}
+                value={datosForm?.descripcion || ""}
                 onChange={manejarCambios}
               />
               <TextField
@@ -181,7 +229,7 @@ export default () => {
                 fullWidth
                 margin="normal"
                 required
-                value={datosForm.color}
+                value={datosForm?.color || ""}
                 onChange={manejarCambios}
                 type="color"
               />
@@ -193,7 +241,7 @@ export default () => {
                 fullWidth
                 margin="normal"
                 required
-                value={datosForm.codigo}
+                value={datosForm?.codigo || ""}
                 onChange={manejarCambios}
               />
               <ContenedorBotones>
@@ -204,8 +252,9 @@ export default () => {
                 >
                   Cerrar
                 </Button>
+
                 <Button type="submit" variant="contained">
-                  Guardar
+                  {btnContenido}
                 </Button>
 
                 {/* <Boton onClick={() => setActive(!active)}>Cerrar</Boton>
