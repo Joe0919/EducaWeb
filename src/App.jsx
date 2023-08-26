@@ -6,8 +6,7 @@ import Footer from "./Components/Footer";
 import { Home } from "./Pages/Home";
 import Video from "./Pages/Video";
 import Categorias from "./Pages/Categorias";
-import { Videos } from "./Pages/Videos";
-
+import Videos from "./Pages/Videos";
 
 
 function App() {

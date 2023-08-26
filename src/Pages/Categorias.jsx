@@ -1,8 +1,18 @@
-import { styled } from "styled-components";
-
 import { Modal } from "../Components/Modal";
-import { Btn, MainPadding, Titulo1 } from "../Components/UI";
+import {
+  BotonDelete,
+  BotonEdit,
+  BotonPag,
+  Btn,
+  ContenedorBotones,
+  ContenedorPag,
+  Contenido,
+  MainPadding,
+  Paginacion,
+  Titulo1,
+} from "../Components/UI";
 import { useEffect, useMemo, useState } from "react";
+
 import { v4 as uuidv4 } from "uuid";
 
 import {
@@ -25,11 +35,6 @@ export default () => {
 
   const [btnContenido, setBtnContenido] = useState("Guardar");
 
-  // const [nombre, setNombre] = useState("");
-  // const [descripcion, setDescripcion] = useState("");
-  // const [color, setColor] = useState("#000");
-  // const [codigo, setCodigo] = useState("");
-
   const [datosForm, setDatosForm] = useState({
     nombre: "",
     descripcion: "",
@@ -47,10 +52,6 @@ export default () => {
   useEffect(() => {
     buscar("/categorias", setData, setLoading);
   }, []); //Consultar datos de la API
-
-  // useEffect(() => {
-  //   console.log(color)
-  // }, [color]);
 
   // + < CONFIGURANDO LA TABLA >
   const columns = useMemo(
@@ -76,7 +77,20 @@ export default () => {
             setActive(!active);
           };
 
-          return <button onClick={Editar}>Editar</button>;
+          return (
+            <BotonEdit onClick={Editar}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                className="bi bi-pencil-fill"
+                viewBox="0 0 16 16"
+              >
+                <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+              </svg>
+            </BotonEdit>
+          );
         },
       },
       {
@@ -95,13 +109,31 @@ export default () => {
             }).then((result) => {
               if (result.isConfirmed) {
                 const id = row.row.original.id;
-                eliminar(`/categorias/${id}`,'/categorias', setData, setLoading);
+                eliminar(
+                  `/categorias/${id}`,
+                  "/categorias",
+                  setData,
+                  setLoading
+                );
                 mostrarMensaje("Se eliminó el registro", "success");
               }
             });
           };
 
-          return <button onClick={Eliminar}>Eliminar</button>;
+          return (
+            <BotonDelete onClick={Eliminar}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                className="bi bi-trash3-fill"
+                viewBox="0 0 16 16"
+              >
+                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+              </svg>
+            </BotonDelete>
+          );
         },
       },
     ],
@@ -171,7 +203,7 @@ export default () => {
   return (
     data.length > 0 && (
       <MainPadding>
-        <Titulo1>NUEVA CATEGORIA</Titulo1>
+        <Titulo1>CATEGORIAS REGISTRADAS</Titulo1>
         <Btn
           onClick={() => {
             setActive(!active);
@@ -184,7 +216,7 @@ export default () => {
             setBtnContenido("Guardar");
           }}
         >
-          Nuevo
+          NUEVO
         </Btn>
         <Modal
           estado={active}
@@ -432,80 +464,3 @@ export default () => {
     )
   );
 };
-
-const ContenedorBotones = styled.div`
-  width: 100%;
-  margin: 1rem 0 0.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-`;
-
-const ContenedorPag = styled.div`
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-`;
-
-// const Boton = styled.button`
-//   display: block;
-//   padding: 10px 30px;
-//   border-radius: 50px;
-//   color: #fff;
-//   border: none;
-//   background: #1766dc;
-//   cursor: pointer;
-//   font-family: "Roboto", sans-serif;
-//   font-weight: 500;
-//   transition: 0.3s ease all;
-
-//   &:hover {
-//     background: #0066ff;
-//   }
-// `;
-
-const Contenido = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: black;
-
-  h1 {
-    font-size: 42px;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  p {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
-
-  img {
-    width: 100%;
-    vertical-align: top;
-    border-radius: 3px;
-  }
-`;
-
-const Paginacion = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const BotonPag = styled.button`
-  padding: 0.5rem;
-  border: 2px solid white;
-  font-weight: 600;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #2a7ae4;
-  &:disabled {
-    color: gray;
-  }
-`;
