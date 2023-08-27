@@ -34,9 +34,12 @@ import {
 import { buscar, eliminar, registrar } from "../Api/api";
 import { mostrarMensaje } from "../functions";
 import Swal from "sweetalert2";
+import { styled } from "styled-components";
 
 export default () => {
   const [active, setActive] = useState(false);
+  const [active1, setActive1] = useState(false);
+
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]); // Hook que guarda los videos
   const [categorias, setCategorias] = useState([]);
@@ -85,9 +88,13 @@ export default () => {
       },
       {
         Header: "Ver",
-        Cell: () => {
+        Cell: (row) => {
+          const Ver = () => {
+            setDatosForm(row.row.original);
+            setActive1(!active1);
+          };
           return (
-            <BotonView>
+            <BotonView onClick={Ver}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -144,12 +151,7 @@ export default () => {
             }).then((result) => {
               if (result.isConfirmed) {
                 const id = row.row.original.id;
-                eliminar(
-                  `/videos/${id}`,
-                  "/videos",
-                  setData,
-                  setLoading
-                );
+                eliminar(`/videos/${id}`, "/videos", setData, setLoading);
                 mostrarMensaje("Se eliminó el registro", "success");
               }
             });
@@ -172,7 +174,7 @@ export default () => {
         },
       },
     ],
-    [active, setData]
+    [active, setData, active1]
   );
 
   // + INICIALIZACION DE LA TABLA
@@ -363,9 +365,34 @@ export default () => {
             </form>
           </Contenido>
         </Modal>
+        <Modal
+          estado={active1}
+          cambiarEstado={setActive1}
+          mostrarHeader={false}
+          mostrarOverlay={true}
+          posicionModal={"start"}
+          padding={"0"}
+          width={"100vw"}
+          paddingOverlay={"0px"}
+          colorFondo={"transparent"}
+          tipoModal={"ModalVideo"}
+          tituloVideo={datosForm?.titulo || ""}
+          categoriaVideo={datosForm?.categoria || ""}
+        >
+          <Contenido>
+            <Video>
+              <VideoPlayer
+                className="videoPlayer"
+                src={datosForm?.link || ""}
+                title="TWICE「Hare Hare」Music Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></VideoPlayer>
+            </Video>
+          </Contenido>
+        </Modal>
         <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
         {/* Añadimos las propiedades a nuestra tabla nativa */}
-
         <div>
           <table {...getTableProps()} className="tabla">
             <thead>
@@ -532,3 +559,19 @@ export default () => {
     )
   );
 };
+
+const Video = styled.div`
+  height: 88vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+`;
+
+const VideoPlayer = styled.iframe`
+  position: absolute;
+  height: 100%;
+  max-height: 600px;
+  max-width: 1050px;
+  width: 100%;
+`;

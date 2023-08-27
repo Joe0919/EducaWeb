@@ -173,3 +173,10 @@ export const BotonView = styled(Boton)`
     background: #17a2b8;
   }
 `;
+export const BotonClose = styled(Boton)`
+  background: #0a4b55;
+  padding: 1px;
+  &:hover {
+    background: #17a2b8;
+  }
+`;
