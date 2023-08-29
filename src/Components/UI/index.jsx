@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { keyframes, styled } from "styled-components";
 
 export const Icono = styled.img`
   height: 25px;
@@ -90,6 +90,7 @@ export const Contenido = styled.div`
   flex-direction: column;
   align-items: center;
   color: black;
+  background-color: white;
 
   h1 {
     font-size: 42px;
@@ -142,16 +143,26 @@ export const Paginacion = styled.div`
 `;
 
 export const BotonPag = styled.button`
-  padding: 0.5rem;
-  border: 2px solid white;
+  padding: 0.6rem;
   font-weight: 600;
-  border-radius: 5px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #2a7ae4;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  transition: all 0.3s;
+  color: #fff;
+  stroke-width: 101px;
   &:disabled {
     color: gray;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.35);
+  }
+  &:disabled:hover {
+    background-color: rgba(255, 255, 255, 0.1);
   }
 `;
 
@@ -164,7 +175,7 @@ export const BotonEdit = styled(Boton)`
 export const BotonDelete = styled(Boton)`
   background: #760813;
   &:hover {
-    background: #B40C1E;
+    background: #b40c1e;
   }
 `;
 export const BotonView = styled(Boton)`
@@ -179,4 +190,52 @@ export const BotonClose = styled(Boton)`
   &:hover {
     background: #17a2b8;
   }
+`;
+
+export const Video = styled.div`
+  height: 88vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+`;
+
+export const VideoPlayer = styled.iframe`
+  border: transparent;
+  position: absolute;
+  height: 100%;
+  max-height: 600px;
+  max-width: 1050px;
+  width: 100%;
+`;
+export const Carga = styled.div`
+  color: white;
+  font-weight: 600;
+  font-size: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 11rem);
+  background-color: rgba(0, 0, 0, 0.5);
+`;
+
+const rotation = keyframes`
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+`;
+
+export const Loader = styled.span`
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-bottom-color: #ff3d00;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: ${rotation} 1s linear infinite;
 `;

@@ -10,7 +10,7 @@ export const Modal = ({
   mostrarHeader,
   mostrarOverlay,
   posicionModal,
-  padding,
+  padding,  
   paddingOverlay,
   colorFondo,
   width,
@@ -96,12 +96,14 @@ const Overlay = styled.div`
     props.posicionModal ? props.posicionModal : "center"};
   justify-content: center;
   z-index: 999;
+  
 `;
 
 const ContenedorModal = styled.div`
   width: ${(props) => (props.width ? props.width : "500px")};
   min-height: 100px;
   background: ${(props) => (props.colorFondo ? props.colorFondo : "#fff")};
+  color: ${(props) => (props.colorFondo ? "#fff" : "#000")};
   position: relative;
   border-radius: 5px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -128,7 +130,6 @@ const EncabezadoModal = styled.div`
     font-weight: 600;
     font-size: 20px;
     /* color: #1766dc; */
-    color: black;
   }
 `;
 const BotonCerrar = styled.button`

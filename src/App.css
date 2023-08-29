@@ -1,45 +1,8 @@
-.container {
-  padding: 0 15vw;
-}
-
-.banner {
-  display: flex;
-  align-items: flex-end;
-  height: 80vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(./assets/images/portada.png) no-repeat center / cover;
-}
-.banner-div {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  padding-bottom: 2rem;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  color: white;
-  gap: 2rem;
-  text-align: justify;
-}
-.title {
-  background-color: #6bd1ff;
-  width: fit-content;
-  padding: 5px 20px;
-  font-size: 40px;
-  font-weight: normal;
-}
-
-.desc {
-  font-weight: 100;
-}
-.video {
-  border: 2px solid #6bd1ff;
-  height: 340px;
-}
-.App {
-  color: white;
+.content-tabla {
+  position: relative;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-radius: 0.5rem;
 }
 
 .tabla {
@@ -52,16 +15,26 @@
 }
 
 .tabla thead tr {
-  background-color: rgb(56, 51, 51);
+  background-color: rgba(255, 255, 255, 0.2);
   color: #ffffff;
   text-align: middle;
+  text-transform: uppercase;
+  border-bottom:1px solid gray;
+  border-top:1px solid gray;
 }
 
 .tabla th,
 .tabla td {
   padding: 12px 15px;
-  border: 1px solid white;
   text-align: center;
+
+}
+.tabla tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.tabla tbody tr {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-bottom:1px solid gray
 }
 
 .tabla thead tr th:nth-child(1) {
@@ -76,9 +49,34 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
-.carga {
+.cargaContent{
   color: white;
   font-weight: 600;
   font-size: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 11rem);
+  background-color: rgba(0,0,0,.5);
 }
 
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #FFF;
+  border-bottom-color: #FF3D00;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  }
+
+  @keyframes rotation {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+  } 

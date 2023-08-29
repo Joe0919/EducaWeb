@@ -38,12 +38,12 @@ export const registrar = (url, data, setData, setLoading) => {
     });
 };
 
-export const editar = (url, data, setLoading) => {
+export const editar = (url, url1, data, setData, setLoading) => {
   api
     .put(url, data)
     .then((response) => {
       console.log("Datos editados:", response.data);
-      setLoading(false);
+      buscar(url1, setData, setLoading);
       // Realizar cualquier otra acción después de editar los datos
     })
     .catch((error) => {

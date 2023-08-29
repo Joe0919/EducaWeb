@@ -5,12 +5,16 @@ import {
   BotonPag,
   BotonView,
   Btn,
+  Carga,
   ContenedorBotones,
   ContenedorPag,
   Contenido,
+  Loader,
   MainPadding,
   Paginacion,
   Titulo1,
+  Video,
+  VideoPlayer,
 } from "../Components/UI";
 import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -31,10 +35,9 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { buscar, eliminar, registrar } from "../Api/api";
+import { buscar, editar, eliminar, registrar } from "../Api/api";
 import { mostrarMensaje } from "../functions";
 import Swal from "sweetalert2";
-import { styled } from "styled-components";
 
 export default () => {
   const [active, setActive] = useState(false);
@@ -215,33 +218,63 @@ export default () => {
   // + </ CONFIGURANDO LA TABLA >
 
   if (loading) {
-    return <div className="carga">Cargando...</div>;
+    return (
+      <Carga>
+        <Loader />
+      </Carga>
+    );
   }
 
   const Enviar = (evt) => {
     evt.preventDefault();
-    let id = uuidv4();
-    const data = {
-      ...datosForm,
-      id,
-    };
-    registrar("/videos", data, setData, setLoading);
-    setActive(!active);
-    mostrarMensaje("Se registraron los datos", "success");
-    // console.log(data)
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¡Se registraran los datos ingresados!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirmar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let id = uuidv4();
+        const data = {
+          ...datosForm,
+          id,
+        };
+        registrar("/videos", data, setData, setLoading);
+        setActive(!active);
+        mostrarMensaje("Se registraron los datos", "success");
+        // console.log(data)
+      }
+    });
   };
   const EditarDatos = (evt) => {
     evt.preventDefault();
-    const id = datosForm.id;
-    registrar(`/videos/${id}`, datosForm, setLoading);
-    setActive(!active);
-    mostrarMensaje("Se Editaron los datos", "success");
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¡El registro se editará con los datos ingresados!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirmar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const id = datosForm.id;
+        editar(`/videos/${id}`, `/videos`, datosForm, setData, setLoading);
+        setActive(!active);
+        mostrarMensaje("Se Editaron los datos", "success");
+      }
+    });
   };
 
   return (
     data.length > 0 && (
       <MainPadding>
-        <Titulo1>CATEGORIAS REGISTRADAS</Titulo1>
+        <Titulo1>VIDEOS REGISTRADOS</Titulo1>
         <Btn
           onClick={() => {
             setActive(!active);
@@ -384,7 +417,7 @@ export default () => {
               <VideoPlayer
                 className="videoPlayer"
                 src={datosForm?.link || ""}
-                title="TWICE「Hare Hare」Music Video"
+                title={datosForm?.titulo || ""}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen
               ></VideoPlayer>
@@ -393,7 +426,7 @@ export default () => {
         </Modal>
         <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
         {/* Añadimos las propiedades a nuestra tabla nativa */}
-        <div>
+        <div className="content-tabla">
           <table {...getTableProps()} className="tabla">
             <thead>
               {
@@ -468,7 +501,11 @@ export default () => {
               </strong>
             </span>
             <ContenedorPag>
-              <BotonPag onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+              <BotonPag
+                onClick={() => gotoPage(0)}
+                disabled={!canPreviousPage}
+                title="Primera Pág."
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -490,6 +527,7 @@ export default () => {
               <BotonPag
                 onClick={() => previousPage()}
                 disabled={!canPreviousPage}
+                title="Anterior"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -505,7 +543,11 @@ export default () => {
                   />
                 </svg>
               </BotonPag>
-              <BotonPag onClick={() => nextPage()} disabled={!canNextPage}>
+              <BotonPag
+                onClick={() => nextPage()}
+                disabled={!canNextPage}
+                title="Siguiente"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -523,6 +565,7 @@ export default () => {
               <BotonPag
                 onClick={() => gotoPage(pageCount - 1)}
                 disabled={!canNextPage}
+                title="Última Pág."
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -559,19 +602,3 @@ export default () => {
     )
   );
 };
-
-const Video = styled.div`
-  height: 88vh;
-  width: 100%;
-  position: relative;
-  display: flex;
-  justify-content: center;
-`;
-
-const VideoPlayer = styled.iframe`
-  position: absolute;
-  height: 100%;
-  max-height: 600px;
-  max-width: 1050px;
-  width: 100%;
-`;

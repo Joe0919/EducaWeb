@@ -21,7 +21,7 @@ const Con = styled.div`
 export default (props) => {
   const { nombre, descripcion, color } = props.datos;
 
-  const { videos } = props;
+  const { videos, verVideo } = props;
 
   return (
     <>
@@ -31,7 +31,7 @@ export default (props) => {
             <Title style={{ backgroundColor: color }}>{nombre}</Title>
             <Desc>{descripcion}</Desc>
           </Con>
-          <Carrusel datos={videos} color={color} />
+          <Carrusel datos={videos} color={color} verVideo={verVideo} />
         </Categoria>
       )}
     </>

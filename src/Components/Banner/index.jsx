@@ -1,11 +1,10 @@
 import { styled } from "styled-components";
 import { Container, IconoPlay, Parrafo, Title, Titulo1, Titulo3 } from "../UI";
 import Carrusel from "../Carrusel";
-import { Link } from "react-router-dom";
 
 export default (props) => {
-  const { videos, categorias } = props;
-  const { id, categoria, imagen, titulo } = videos[0];
+  const { videos, categorias, verVideo } = props;
+  const { categoria, imagen } = videos[0];
   const { color } = categorias;
 
   return (
@@ -25,32 +24,29 @@ export default (props) => {
                 </Parrafo>
               </div>
             </BannerContent>
-            <BannerContent>
-              <Link to={`/video/${id}`} title={`Ver: ${titulo}`}>
-                <ImgVideoBanner
-                  src={imagen}
-                  alt="Video"
-                  style={{ border: `3px solid ${color}` }}
-                  
-                />
-                {/* <VideoBanner
+            <BannerContent onClick={() => verVideo(videos[0])}>
+              <ImgVideoBanner
+                src={imagen}
+                alt="Video"
+                style={{ border: `3px solid ${color}` }}
+              />
+              {/* <VideoBanner
                 className="video"
                 src={props.videos[0].link}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               ></VideoBanner> */}
-                <IconoPlay title="Ver Video">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="50"
-                    height="50"
-                    fill="currentColor"
-                    className="bi bi-play-fill"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
-                  </svg>
-                </IconoPlay>
-              </Link>
+              <IconoPlay title="Ver Video">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="50"
+                  height="50"
+                  fill="currentColor"
+                  className="bi bi-play-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+                </svg>
+              </IconoPlay>
             </BannerContent>
           </BannerDiv>
         )}
@@ -58,10 +54,14 @@ export default (props) => {
 
       <VideosSimilares>
         <Titulo1>
-          Videos Relacionados a <strong style={{ color: color }}>{categoria}</strong>{" "}
+          Videos Relacionados a{" "}
+          <strong style={{ color: color }}>{categoria}</strong>{" "}
         </Titulo1>
-        {}
-        <Carrusel datos={videos.filter((video, i) => i !== 0)} color={color} />
+        <Carrusel
+          datos={videos.filter((video, i) => i !== 0)}
+          color={color}
+          verVideo={verVideo}
+        />
       </VideosSimilares>
     </>
   );

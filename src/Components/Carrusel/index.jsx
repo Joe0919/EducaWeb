@@ -4,11 +4,10 @@ import { Navigation, Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
-import { Link } from "react-router-dom";
 import { IconoPlay } from "../UI";
 
 export default (props) => {
-  const { color, datos } = props;
+  const { color, datos, verVideo } = props;
   return (
     <Carrusel>
       <Swiper
@@ -50,10 +49,10 @@ export default (props) => {
         }}
       >
         {datos.map((dato) => {
-          const { id, imagen, titulo } = dato;
+          const { id, imagen } = dato;
           return (
-            <SwiperSlide key={id}>
-              <Link to={`/video/${id}`} title={`Ver: ${titulo}`}>
+            <SwiperSlide key={id} onClick={() => verVideo(dato)} >
+              {/* <Link to={`/video/${id}`} title={`Ver: ${titulo}`}> */}
                 <VideoImg
                   src={imagen}
                   style={{ border: `3px solid ${color}` }}
@@ -70,7 +69,7 @@ export default (props) => {
                     <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
                   </svg>
                 </IconoPlayCarrusel>
-              </Link>
+              {/* </Link> */}
             </SwiperSlide>
           );
         })}

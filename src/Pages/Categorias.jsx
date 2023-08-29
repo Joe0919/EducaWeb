@@ -4,9 +4,11 @@ import {
   BotonEdit,
   BotonPag,
   Btn,
+  Carga,
   ContenedorBotones,
   ContenedorPag,
   Contenido,
+  Loader,
   MainPadding,
   Paginacion,
   Titulo1,
@@ -24,7 +26,7 @@ import {
 
 import GlobalFilter from "../GlobalFilter";
 import { Button, TextField } from "@mui/material";
-import { buscar, eliminar, registrar } from "../Api/api";
+import { buscar, editar, eliminar, registrar } from "../Api/api";
 import { mostrarMensaje } from "../functions";
 import Swal from "sweetalert2";
 
@@ -178,26 +180,62 @@ export default () => {
   // + </ CONFIGURANDO LA TABLA >
 
   if (loading) {
-    return <div className="carga">Cargando...</div>;
+    return (
+      <Carga>
+        <Loader />
+      </Carga>
+    );
   }
 
   const Enviar = (evt) => {
     evt.preventDefault();
-    let id = uuidv4();
-    const data = {
-      ...datosForm,
-      id,
-    };
-    registrar("/categorias", data, setData, setLoading);
-    setActive(!active);
-    mostrarMensaje("Se registraron los datos", "success");
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¡No podrás revertir la eliminación!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirmar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let id = uuidv4();
+        const data = {
+          ...datosForm,
+          id,
+        };
+        registrar("/categorias", data, setData, setLoading);
+        setActive(!active);
+        mostrarMensaje("Se registraron los datos", "success");
+      }
+    });
   };
   const EditarDatos = (evt) => {
     evt.preventDefault();
-    const id = datosForm.id;
-    registrar(`/categorias/${id}`, datosForm, setLoading);
-    setActive(!active);
-    mostrarMensaje("Se Editaron los datos", "success");
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¡No podrás revertir la eliminación!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirmar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const id = datosForm.id;
+        editar(
+          `/categorias/${id}`,
+          `/categorias`,
+          datosForm,
+          setData,
+          setLoading
+        );
+        setActive(!active);
+        mostrarMensaje("Se Editaron los datos", "success");
+      }
+    });
   };
 
   return (
@@ -227,6 +265,7 @@ export default () => {
           posicionModal={"start"}
           padding={"20px"}
           width={"600px"}
+          colorFondo={"#17202A"}
         >
           <Contenido>
             <form onSubmit={btnContenido === "Guardar" ? Enviar : EditarDatos}>
@@ -240,6 +279,7 @@ export default () => {
                 required
                 value={datosForm?.nombre || ""}
                 onChange={manejarCambios}
+
               />
               <TextField
                 id="descripcion"
