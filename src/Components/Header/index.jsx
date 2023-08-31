@@ -12,6 +12,7 @@ const Header = styled(Container)`
   background-color: black;
   width: 100%;
   border-bottom: 3px solid #2a7ae4;
+  z-index: 50;
 `;
 
 export default () => {
@@ -21,7 +22,7 @@ export default () => {
 
   return (
     <Header>
-      <Link to={`/`}>
+      <Link to={`/`} title="Ir a Inicio">
         <Logo src={logo} alt="Logo EducaWeb" />
       </Link>
       <Link

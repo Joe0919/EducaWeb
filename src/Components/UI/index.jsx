@@ -12,9 +12,13 @@ export const Btn = styled.button`
   border: 2px solid white;
   color: white;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 15px;
   padding: 12px 30px;
   cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 export const Logo = styled.img`
   width: 120px;
@@ -61,7 +65,8 @@ export const Main = styled.main`
   color: white;
 `;
 export const MainPadding = styled(Main)`
-  padding: 2vh 15vw;
+  padding: 5vh 15vw;
+  position: relative;
 `;
 
 export const IconoPlay = styled.span`
@@ -90,7 +95,6 @@ export const Contenido = styled.div`
   flex-direction: column;
   align-items: center;
   color: black;
-  background-color: white;
 
   h1 {
     font-size: 42px;
@@ -116,6 +120,13 @@ export const ContenedorBotones = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+`;
+
+export const ContentBtn = styled.div`
+  width: 100%;
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const ContenedorPag = styled.div`
@@ -190,6 +201,29 @@ export const BotonClose = styled(Boton)`
   &:hover {
     background: #17a2b8;
   }
+`;
+export const BotonNew = styled(Btn)`
+  background: #2a7ae4;
+  color: white;
+  border: transparent;
+  &:hover {
+    background: #1666cf;
+    transform: scale(1.05);
+  }
+`;
+
+export const BotonTransparent= styled(Btn)`
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  padding: 12px 10px;
+  border: transparent;
+  color: black;
+  background-color: #9E9E9E;
 `;
 
 export const Video = styled.div`

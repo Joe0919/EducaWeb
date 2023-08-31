@@ -58,6 +58,7 @@ export const Home = () => {
         tipoModal={"ModalVideo"}
         tituloVideo={datos?.titulo || ""}
         categoriaVideo={datos?.categoria || ""}
+        
       >
         <Contenido>
           <Video>

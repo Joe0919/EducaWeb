@@ -2,12 +2,14 @@ import { Modal } from "../Components/Modal";
 import {
   BotonDelete,
   BotonEdit,
+  BotonNew,
   BotonPag,
-  Btn,
+  BotonTransparent,
   Carga,
   ContenedorBotones,
   ContenedorPag,
   Contenido,
+  ContentBtn,
   Loader,
   MainPadding,
   Paginacion,
@@ -29,6 +31,7 @@ import { Button, TextField } from "@mui/material";
 import { buscar, editar, eliminar, registrar } from "../Api/api";
 import { mostrarMensaje } from "../functions";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 export default () => {
   const [active, setActive] = useState(false);
@@ -40,7 +43,7 @@ export default () => {
   const [datosForm, setDatosForm] = useState({
     nombre: "",
     descripcion: "",
-    color: "#000",
+    color: "#f00",
     codigo: "",
   });
   const manejarCambios = (event) => {
@@ -189,6 +192,7 @@ export default () => {
 
   const Enviar = (evt) => {
     evt.preventDefault();
+
     Swal.fire({
       title: "¿Estás seguro?",
       text: "¡No podrás revertir la eliminación!",
@@ -210,6 +214,7 @@ export default () => {
         mostrarMensaje("Se registraron los datos", "success");
       }
     });
+    // Realizar alguna acción con los datos ingresados
   };
   const EditarDatos = (evt) => {
     evt.preventDefault();
@@ -242,20 +247,37 @@ export default () => {
     data.length > 0 && (
       <MainPadding>
         <Titulo1>CATEGORIAS REGISTRADAS</Titulo1>
-        <Btn
-          onClick={() => {
-            setActive(!active);
-            setDatosForm({
-              nombre: "",
-              descripcion: "",
-              color: "#000",
-              codigo: "",
-            });
-            setBtnContenido("Guardar");
-          }}
-        >
-          NUEVO
-        </Btn>
+        <ContentBtn>
+          <Link to={`/videos`} title="Ir a Inicio">
+            <BotonTransparent>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                fill="currentColor"
+                className="bi bi-arrow-left-square-fill"
+                viewBox="0 0 16 16"
+              >
+                <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z" />
+              </svg>{" "}
+              Videos
+            </BotonTransparent>
+          </Link>
+          <BotonNew
+            onClick={() => {
+              setActive(!active);
+              setDatosForm({
+                nombre: "",
+                descripcion: "",
+                color: "#f00",
+                codigo: "",
+              });
+              setBtnContenido("Guardar");
+            }}
+          >
+            NUEVO
+          </BotonNew>
+        </ContentBtn>
         <Modal
           estado={active}
           cambiarEstado={setActive}
@@ -265,7 +287,6 @@ export default () => {
           posicionModal={"start"}
           padding={"20px"}
           width={"600px"}
-          colorFondo={"#17202A"}
         >
           <Contenido>
             <form onSubmit={btnContenido === "Guardar" ? Enviar : EditarDatos}>
@@ -279,7 +300,6 @@ export default () => {
                 required
                 value={datosForm?.nombre || ""}
                 onChange={manejarCambios}
-
               />
               <TextField
                 id="descripcion"

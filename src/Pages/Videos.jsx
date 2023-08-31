@@ -2,13 +2,14 @@ import { Modal } from "../Components/Modal";
 import {
   BotonDelete,
   BotonEdit,
+  BotonNew,
   BotonPag,
   BotonView,
-  Btn,
   Carga,
   ContenedorBotones,
   ContenedorPag,
   Contenido,
+  ContentBtn,
   Loader,
   MainPadding,
   Paginacion,
@@ -48,6 +49,25 @@ export default () => {
   const [categorias, setCategorias] = useState([]);
 
   const [btnContenido, setBtnContenido] = useState("Guardar");
+
+  const [errors, setErrors] = useState({ //Hook que maneja los estados
+    titulo: {
+      error: false,
+      message: "No debe estar vacio",
+    },
+    link: {
+      error: false,
+      message: "No debe estar vacio",
+    },
+    imagen: {
+      error: false,
+      message: "No debe estar vacio",
+    },
+    codigo: {
+      error: false,
+      message: "No debe estar vacio",
+    },
+  });
 
   const [datosForm, setDatosForm] = useState({
     titulo: "",
@@ -275,22 +295,24 @@ export default () => {
     data.length > 0 && (
       <MainPadding>
         <Titulo1>VIDEOS REGISTRADOS</Titulo1>
-        <Btn
-          onClick={() => {
-            setActive(!active);
-            setDatosForm({
-              titulo: "",
-              link: "",
-              imagen: "",
-              categoria: "",
-              descripcion: "",
-              codigo: "",
-            });
-            setBtnContenido("Guardar");
-          }}
-        >
-          NUEVO
-        </Btn>
+        <ContentBtn>
+          <BotonNew
+            onClick={() => {
+              setActive(!active);
+              setDatosForm({
+                titulo: "",
+                link: "",
+                imagen: "",
+                categoria: "",
+                descripcion: "",
+                codigo: "",
+              });
+              setBtnContenido("Guardar");
+            }}
+          >
+            NUEVO REGISTRO
+          </BotonNew>
+        </ContentBtn>
         <Modal
           estado={active}
           cambiarEstado={setActive}
@@ -313,6 +335,8 @@ export default () => {
                 required
                 value={datosForm?.titulo || ""}
                 onChange={manejarCambios}
+                error={errors.titulo.error}
+                helperText={errors.titulo.error ? errors.titulo.message : ""}
               />
               <TextField
                 id="link"
@@ -325,6 +349,8 @@ export default () => {
                 required
                 value={datosForm?.link || ""}
                 onChange={manejarCambios}
+                error={errors.link.error}
+                helperText={errors.link.error ? errors.link.message : ""}
               />
               <TextField
                 id="imagen"
@@ -336,6 +362,8 @@ export default () => {
                 required
                 value={datosForm?.imagen || ""}
                 onChange={manejarCambios}
+                error={errors.imagen.error}
+                helperText={errors.imagen.error ? errors.imagen.message : ""}
               />
               <TextField
                 id="descripcion"
@@ -378,6 +406,8 @@ export default () => {
                 required
                 value={datosForm?.codigo || ""}
                 onChange={manejarCambios}
+                error={errors.codigo.error}
+                helperText={errors.codigo.error ? errors.codigo.message : ""}
               />
               <ContenedorBotones>
                 <Button

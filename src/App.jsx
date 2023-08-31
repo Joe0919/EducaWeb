@@ -7,7 +7,7 @@ import { Home } from "./Pages/Home";
 import Video from "./Pages/Video";
 import Categorias from "./Pages/Categorias";
 import Videos from "./Pages/Videos";
-
+import NotFound from "./Pages/NotFound";
 
 function App() {
   // const [tema, setTema] = useState(true);
@@ -20,10 +20,11 @@ function App() {
       <GlobalStyle />
       <Header />
       <Routes>
-        <Route path="/" element={ <Home /> } />
-        <Route path="/categorias" element={ <Categorias /> } />
-        <Route path="/videos" element={ <Videos /> } />
-        <Route path="/video/:id" element={<Video/>}/>
+        <Route path="/" element={<Home />} />
+        <Route path="/categorias" element={<Categorias />} />
+        <Route path="/videos" element={<Videos />} />
+        <Route path="/video/:id" element={<Video />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </Router>
