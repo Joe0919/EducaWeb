@@ -40,7 +40,7 @@ import { buscar, editar, eliminar, registrar } from "../Api/api";
 import { mostrarMensaje } from "../functions";
 import Swal from "sweetalert2";
 
-export default () => {
+export default ({ setMainLoad }) => {
   const [active, setActive] = useState(false);
   const [active1, setActive1] = useState(false);
 
@@ -50,7 +50,8 @@ export default () => {
 
   const [btnContenido, setBtnContenido] = useState("Guardar");
 
-  const [errors, setErrors] = useState({ //Hook que maneja los estados
+  const [errors, setErrors] = useState({
+    //Hook que maneja los estados
     titulo: {
       error: false,
       message: "No debe estar vacio",
@@ -86,9 +87,9 @@ export default () => {
   };
 
   useEffect(() => {
-    buscar("/videos", setData, setLoading);
-    buscar("/categorias", setCategorias, setLoading);
-  }, []); //Consultar datos de la API
+    buscar("/videos", setData, setLoading, setMainLoad);
+    buscar("/categorias", setCategorias, setLoading, setMainLoad);
+  }, [setMainLoad]); //Consultar datos de la API
 
   // + < CONFIGURANDO LA TABLA >
   const columns = useMemo(
@@ -174,7 +175,13 @@ export default () => {
             }).then((result) => {
               if (result.isConfirmed) {
                 const id = row.row.original.id;
-                eliminar(`/videos/${id}`, "/videos", setData, setLoading);
+                eliminar(
+                  `/videos/${id}`,
+                  "/videos",
+                  setData,
+                  setLoading,
+                  setMainLoad
+                );
                 mostrarMensaje("Se eliminó el registro", "success");
               }
             });
@@ -197,7 +204,7 @@ export default () => {
         },
       },
     ],
-    [active, setData, active1]
+    [active, setData, active1, setMainLoad]
   );
 
   // + INICIALIZACION DE LA TABLA
@@ -263,7 +270,7 @@ export default () => {
           ...datosForm,
           id,
         };
-        registrar("/videos", data, setData, setLoading);
+        registrar("/videos", data, setData, setLoading, setMainLoad);
         setActive(!active);
         mostrarMensaje("Se registraron los datos", "success");
         // console.log(data)
@@ -284,7 +291,14 @@ export default () => {
     }).then((result) => {
       if (result.isConfirmed) {
         const id = datosForm.id;
-        editar(`/videos/${id}`, `/videos`, datosForm, setData, setLoading);
+        editar(
+          `/videos/${id}`,
+          `/videos`,
+          datosForm,
+          setData,
+          setLoading,
+          setMainLoad
+        );
         setActive(!active);
         mostrarMensaje("Se Editaron los datos", "success");
       }

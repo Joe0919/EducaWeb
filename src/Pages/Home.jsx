@@ -16,7 +16,7 @@ import Banner from "../Components/Banner";
 import { styled } from "styled-components";
 import { Modal } from "../Components/Modal";
 
-export const Home = () => {
+export const Home = ({ setMainLoad }) => {
   const [active2, setActive2] = useState(false);
   const [videos, setVideos] = useState([]);
   const [categorias, setCategorias] = useState([]);
@@ -24,16 +24,15 @@ export const Home = () => {
 
   const [datos, setDatos] = useState({});
 
-
   const verVideo = (video) => {
     setDatos(video);
     setActive2(!active2);
   };
 
   useEffect(() => {
-    buscar(`/videos`, setVideos, setLoading);
-    buscar(`/categorias`, setCategorias, setLoading);
-  }, []);
+    buscar(`/videos`, setVideos, setLoading, setMainLoad);
+    buscar(`/categorias`, setCategorias, setLoading, setMainLoad);
+  }, [setMainLoad]);
 
   if (loading) {
     return (
@@ -58,7 +57,6 @@ export const Home = () => {
         tipoModal={"ModalVideo"}
         tituloVideo={datos?.titulo || ""}
         categoriaVideo={datos?.categoria || ""}
-        
       >
         <Contenido>
           <Video>

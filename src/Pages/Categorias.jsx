@@ -33,7 +33,7 @@ import { mostrarMensaje } from "../functions";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
-export default () => {
+export default ({ setMainLoad }) => {
   const [active, setActive] = useState(false);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -55,8 +55,8 @@ export default () => {
   };
 
   useEffect(() => {
-    buscar("/categorias", setData, setLoading);
-  }, []); //Consultar datos de la API
+    buscar("/categorias", setData, setLoading, setMainLoad);
+  }, [setMainLoad]); //Consultar datos de la API
 
   // + < CONFIGURANDO LA TABLA >
   const columns = useMemo(
@@ -118,7 +118,8 @@ export default () => {
                   `/categorias/${id}`,
                   "/categorias",
                   setData,
-                  setLoading
+                  setLoading,
+                  setMainLoad
                 );
                 mostrarMensaje("Se eliminó el registro", "success");
               }
@@ -209,7 +210,7 @@ export default () => {
           ...datosForm,
           id,
         };
-        registrar("/categorias", data, setData, setLoading);
+        registrar("/categorias", data, setData, setLoading, setMainLoad);
         setActive(!active);
         mostrarMensaje("Se registraron los datos", "success");
       }
@@ -235,7 +236,8 @@ export default () => {
           `/categorias`,
           datosForm,
           setData,
-          setLoading
+          setLoading,
+          setMainLoad
         );
         setActive(!active);
         mostrarMensaje("Se Editaron los datos", "success");
