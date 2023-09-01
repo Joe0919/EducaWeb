@@ -265,18 +265,40 @@ export default ({ setMainLoad }) => {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        let id = uuidv4();
-        const data = {
-          ...datosForm,
-          id,
-        };
-        registrar("/videos", data, setData, setLoading, setMainLoad);
-        setActive(!active);
-        mostrarMensaje("Se registraron los datos", "success");
-        // console.log(data)
+        const { link, imagen, codigo } = datosForm;
+        let campoRepetido = "";
+
+        const registroExistente = data.find((registro) => {
+          registro.link === link
+            ? (campoRepetido = "Link de video")
+            : registro.imagen === imagen
+            ? (campoRepetido = "Link de Imagen")
+            : registro.codigo === codigo
+            ? (campoRepetido = "Codigo")
+            : (campoRepetido = "");
+
+          return campoRepetido !== "";
+        });
+
+        if (!registroExistente) {
+          let id = uuidv4();
+          const newData = {
+            ...datosForm,
+            id,
+          };
+          registrar("/videos", newData, setData, setLoading, setMainLoad);
+          setActive(!active);
+          mostrarMensaje("Se registraron los datos", "success");
+        } else {
+          mostrarMensaje(
+            `No se puede registrar porque ya hay un registro con igual: ${campoRepetido}.`,
+            "error"
+          );
+        }
       }
     });
   };
+
   const EditarDatos = (evt) => {
     evt.preventDefault();
     Swal.fire({
@@ -290,17 +312,40 @@ export default ({ setMainLoad }) => {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        const id = datosForm.id;
-        editar(
-          `/videos/${id}`,
-          `/videos`,
-          datosForm,
-          setData,
-          setLoading,
-          setMainLoad
-        );
-        setActive(!active);
-        mostrarMensaje("Se Editaron los datos", "success");
+        const { id, link, imagen, codigo } = datosForm;
+        let campoRepetido = "";
+
+        const registroExistente = data.find((registro) => {
+          if (registro.id !== id) {
+            registro.link === link
+              ? ((campoRepetido = "Link de video"), true)
+              : registro.imagen === imagen
+              ? ((campoRepetido = "Link de Imagen"), true)
+              : registro.codigo === codigo
+              ? ((campoRepetido = "Codigo"), true)
+              : (campoRepetido = "");
+          }
+
+          return campoRepetido !== "";
+        });
+
+        if (!registroExistente) {
+          editar(
+            `/videos/${id}`,
+            `/videos`,
+            datosForm,
+            setData,
+            setLoading,
+            setMainLoad
+          );
+          setActive(!active);
+          mostrarMensaje("Se Editaron los datos", "success");
+        } else {
+          mostrarMensaje(
+            `No se puede registrar porque ya hay un registro con campo ${campoRepetido} igual.`,
+            "error"
+          );
+        }
       }
     });
   };
