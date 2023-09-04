@@ -16,6 +16,13 @@ const Con = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+
+  @media only screen and (max-width: 767px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding-bottom: .5rem;
+  }
 `;
 
 export default (props) => {

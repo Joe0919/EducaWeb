@@ -30,3 +30,9 @@ export function confirmar(){
         }
       });
 }
+
+export const validarURL = (url) => {
+  // Expresión regular para verificar el formato del enlace de YouTube
+  const youtubeUrlRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/
+  return youtubeUrlRegex.test(url);
+};

@@ -1,3 +1,4 @@
+import ReactPlayer from "react-player";
 import { keyframes, styled } from "styled-components";
 
 export const Icono = styled.img`
@@ -13,11 +14,16 @@ export const Btn = styled.button`
   color: white;
   font-weight: 600;
   font-size: 15px;
-  padding: 12px 30px;
+  padding: 10px 30px;
   cursor: pointer;
   transition: all 0.3s;
   &:hover {
     transform: scale(1.05);
+  }
+
+  @media only screen and (max-width: 767px) {
+    font-size: 13px;
+    padding: 10px 20px;
   }
 `;
 export const Logo = styled.img`
@@ -26,6 +32,19 @@ export const Logo = styled.img`
 export const Container = styled.div`
   background-color: black;
   padding: 0 15vw;
+
+  @media only screen and (max-width: 1199px) {
+    padding: 0 10vw;
+  }
+  @media only screen and (max-width: 991px) {
+    padding: 0 8vw;
+  }
+  @media only screen and (max-width: 767px) {
+    padding: 0 6vw;
+  }
+  @media only screen and (max-width: 575px) {
+    padding: 0 4vw;
+  }
 `;
 
 export const Content = styled.div`
@@ -45,11 +64,26 @@ export const Title = styled.h1`
   font-size: 40px;
   font-weight: normal;
   color: white;
+  @media only screen and (max-width: 815px) {
+    font-size: 35px;
+  }
+  @media only screen and (max-width: 767px) {
+    font-size: 30px;
+  }
+  @media only screen and (max-width: 575px) {
+    font-size: 25px;
+  }
 `;
 export const Titulo1 = styled.h1`
   font-size: 35px;
   font-weight: normal;
   text-align: center;
+  @media only screen and (max-width: 767px) {
+    font-size: 30px;
+  }
+  @media only screen and (max-width: 575px) {
+    font-size: 20px;
+  }
 `;
 export const Titulo3 = styled.h3`
   font-size: 1.9rem;
@@ -67,6 +101,18 @@ export const Main = styled.main`
 export const MainPadding = styled(Main)`
   padding: 5vh 15vw;
   position: relative;
+  @media only screen and (max-width: 1199px) {
+    padding: 5vh 10vw;
+  }
+  @media only screen and (max-width: 991px) {
+    padding: 5vh 8vw;
+  }
+  @media only screen and (max-width: 767px) {
+    padding: 5vh 6vw;
+  }
+  @media only screen and (max-width: 575px) {
+    padding: 5vh 4vw;
+  }
 `;
 
 export const IconoPlay = styled.span`
@@ -135,6 +181,9 @@ export const ContenedorPag = styled.div`
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  @media only screen and (max-width: 767px) {
+    width: auto;
+  }
 `;
 
 export const Boton = styled.button`
@@ -151,6 +200,10 @@ export const Paginacion = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  @media only screen and (max-width: 767px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
 `;
 
 export const BotonPag = styled.button`
@@ -212,35 +265,38 @@ export const BotonNew = styled(Btn)`
   }
 `;
 
-export const BotonTransparent= styled(Btn)`
+export const BotonTransparent = styled(Btn)`
   background: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: .5rem;
+  gap: 0.5rem;
   font-size: 1rem;
   text-transform: uppercase;
-  padding: 12px 10px;
+  padding: 10px 10px;
   border: transparent;
   color: black;
-  background-color: #9E9E9E;
+  background-color: white;
+
+  @media only screen and (max-width: 767px) {
+    font-size: 13px;
+    padding: 10px 8px;
+  }
 `;
 
 export const Video = styled.div`
   height: 88vh;
-  width: 100%;
-  position: relative;
+  width: 80%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 1rem;
 `;
 
-export const VideoPlayer = styled.iframe`
+export const VideoPlayer = styled(ReactPlayer)`
   border: transparent;
-  position: absolute;
-  height: 100%;
-  max-height: 600px;
-  max-width: 1050px;
   width: 100%;
+  height: 100%;
 `;
 export const Carga = styled.div`
   color: white;
@@ -272,4 +328,13 @@ export const Loader = styled.span`
   display: inline-block;
   box-sizing: border-box;
   animation: ${rotation} 1s linear infinite;
+`;
+
+export const DivError = styled.div`
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
 `;

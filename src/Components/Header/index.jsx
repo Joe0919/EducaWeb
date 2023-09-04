@@ -13,6 +13,19 @@ const Header = styled(Container)`
   width: 100%;
   border-bottom: 3px solid #2a7ae4;
   z-index: 50;
+
+  @media only screen and (max-width: 1199px) {
+    padding: 1.3rem 10vw;
+  }
+  @media only screen and (max-width: 991px) {
+    padding: 1.3rem 8vw;
+  }
+  @media only screen and (max-width: 767px) {
+    padding: 1.3rem 6vw;
+  }
+  @media only screen and (max-width: 575px) {
+    padding: 1.3rem 4vw;
+  }
 `;
 
 export default () => {

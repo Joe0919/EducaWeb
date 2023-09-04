@@ -8,6 +8,7 @@ import { IconoPlay } from "../UI";
 
 export default (props) => {
   const { color, datos, verVideo } = props;
+
   return (
     <Carrusel>
       <Swiper
@@ -52,12 +53,12 @@ export default (props) => {
           const { id, imagen, titulo } = dato;
           return (
             <SwiperSlide key={id} onClick={() => verVideo(dato)}>
-              {/* <Link to={`/video/${id}`} title={`Ver: ${titulo}`}> */}
               <VideoImg
                 src={imagen}
                 style={{ border: `3px solid ${color}` }}
                 title={titulo}
               ></VideoImg>
+
               <IconoPlayCarrusel title="Ver Video">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +71,6 @@ export default (props) => {
                   <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
                 </svg>
               </IconoPlayCarrusel>
-              {/* </Link> */}
             </SwiperSlide>
           );
         })}
@@ -82,6 +82,9 @@ export default (props) => {
 const Carrusel = styled.div`
   margin: 0;
   width: 70vw;
+  @media only screen and (max-width: 1199px) {
+    width: auto;
+  }
 `;
 const VideoImg = styled.img`
   /* height: 200px; */

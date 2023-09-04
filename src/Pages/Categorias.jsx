@@ -143,7 +143,7 @@ export default ({ setMainLoad }) => {
         },
       },
     ],
-    [active, setData]
+    [active, setData, setMainLoad]
   );
 
   // + INICIALIZACION DE LA TABLA

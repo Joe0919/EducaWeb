@@ -61,10 +61,10 @@ export const Home = ({ setMainLoad }) => {
         <Contenido>
           <Video>
             <VideoPlayer
-              src={datos.link}
+              url={datos.link}
               title={datos.titulo}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
+              width="100%"
+              height="100%"
             ></VideoPlayer>
           </Video>
         </Contenido>

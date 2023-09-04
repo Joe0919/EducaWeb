@@ -81,6 +81,13 @@ const BannerDiv = styled.div`
   gap: 2rem;
   padding-bottom: 2rem;
   align-items: center;
+
+  @media only screen and (max-width: 767px) {
+    grid-template-columns: 1fr;
+  }
+  @media only screen and (max-width: 575px) {
+    grid-template-columns: 1fr;
+  }
 `;
 const BannerContent = styled.div`
   display: flex;
@@ -88,6 +95,9 @@ const BannerContent = styled.div`
   color: white;
   gap: 2rem;
   position: relative;
+  @media only screen and (max-width: 767px) {
+    gap: 1rem;
+  }
 `;
 
 const ImgVideoBanner = styled.img`
@@ -106,4 +116,16 @@ const VideosSimilares = styled(Container)`
   flex-direction: column;
   padding: 2rem 15vw;
   background-color: transparent;
+  @media only screen and (max-width: 1199px) {
+    padding: 2rem 10vw;
+  }
+  @media only screen and (max-width: 991px) {
+    padding: 2rem 8vw;
+  }
+  @media only screen and (max-width: 767px) {
+    padding: 2rem 6vw;
+  }
+  @media only screen and (max-width: 575px) {
+    padding: 2rem 4vw;
+  }
 `;
