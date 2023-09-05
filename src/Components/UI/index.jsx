@@ -291,6 +291,11 @@ export const Video = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  @media only screen and (max-width: 767px) {
+    width: 100%;
+    padding: 0;
+  }
+
 `;
 
 export const VideoPlayer = styled(ReactPlayer)`

@@ -96,7 +96,9 @@ const Overlay = styled.div`
     props.posicionModal ? props.posicionModal : "center"};
   justify-content: center;
   z-index: 999;
-  
+  @media only screen and (max-width: 767px) {
+    padding: 10px;
+  }
 `;
 
 const ContenedorModal = styled.div`
@@ -165,10 +167,19 @@ const EncabezadoModalVideo = styled.div`
   gap: 20px;
   align-items: center;
   justify-content: space-around;
+  @media only screen and (max-width: 767px) {
+    padding: 0px 6vw;
+    font-size: 14px;
+    gap: .5rem;
+  }
 `;
 
 const ContenedorTitulos = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  @media only screen and (max-width: 767px) {
+    flex-direction: column;
+  }
+
 `;
