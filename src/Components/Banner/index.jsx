@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import { Container, IconoPlay, Parrafo, Title, Titulo1, Titulo3 } from "../UI";
 import Carrusel from "../Carrusel";
+import portada from '../../assets/images/portada.png';
 
 export default (props) => {
   const { videos, categorias, verVideo } = props;
@@ -72,7 +73,7 @@ const Banner = styled(Container)`
   align-items: flex-end;
   height: calc(100vh - 12vh);
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(/src/assets/images/portada.png) no-repeat center / cover;
+    url(${portada}) no-repeat center / cover;
 `;
 
 const BannerDiv = styled.div`
